@@ -1,4 +1,6 @@
 Collide::Application.routes.draw do
+  resources :codes
+
   resources :concepts
 
   devise_for :heroes

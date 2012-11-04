@@ -5,4 +5,4 @@ require File.expand_path('../application', __FILE__)
 Collide::Application.initialize!
 
 # BK: Adds controller MIME type
-Mime::Type.register "text/html", :rb
+Mime::Type.register "text/rb", :rb
