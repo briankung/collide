@@ -1,4 +1,8 @@
 Collide::Application.routes.draw do
+  resources :concepts
+
+  devise_for :heroes
+
   root to: 'home#index'
 
   # The priority is based upon order of creation:
