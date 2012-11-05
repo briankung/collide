@@ -1,37 +1,46 @@
-<h1>Listing implementations</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Source url</th>
-    <th>Live url</th>
-    <th>Description</th>
-    <th>Source code</th>
-    <th>Votes</th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @implementations.each do |implementation| %>
-  <tr>
-    <td><%= implementation.name %></td>
-    <td><%= implementation.source_url %></td>
-    <td><%= implementation.live_url %></td>
-    <td><%= implementation.description %></td>
-    <td><%= implementation.source_code %></td>
-    <td><%= implementation.votes.map{ |v| v.value }.sum %></td>
-    <td><%= link_to 'Show', implementation %></td>
-    <td><%= link_to 'Edit', edit_implementation_path(implementation) %></td>
-    <td><%= link_to 'Destroy', implementation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    <td><%= link_to "Vote Up", polymorphic_path([implementation, :up]) %></td>
-    <td><%= link_to 'Vote Down', polymorphic_path([implementation, :down]) %></td>
-  </tr>
-<% end %>
+<%- model_class = Implementation -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:name) %></th>
+      <th><%= model_class.human_attribute_name(:source_url) %></th>
+      <th><%= model_class.human_attribute_name(:live_url) %></th>
+      <th><%= model_class.human_attribute_name(:description) %></th>
+      <th><%= model_class.human_attribute_name(:source_code) %></th>
+      <th><%= model_class.human_attribute_name(:concept_id) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @implementations.each do |implementation| %>
+      <tr>
+        <td><%= link_to implementation.id, implementation_path(implementation) %></td>
+        <td><%= implementation.name %></td>
+        <td><%= implementation.source_url %></td>
+        <td><%= implementation.live_url %></td>
+        <td><%= implementation.description %></td>
+        <td><%= implementation.source_code %></td>
+        <td><%= implementation.concept_id %></td>
+        <td><%=l implementation.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_implementation_path(implementation), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      implementation_path(implementation),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Implementation', new_implementation_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_implementation_path,
+            :class => 'btn btn-primary' %>
