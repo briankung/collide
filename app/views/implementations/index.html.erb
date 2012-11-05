@@ -7,6 +7,9 @@
     <th>Live url</th>
     <th>Description</th>
     <th>Source code</th>
+    <th>Votes</th>
+    <th></th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
@@ -19,9 +22,12 @@
     <td><%= implementation.live_url %></td>
     <td><%= implementation.description %></td>
     <td><%= implementation.source_code %></td>
+    <td><%= implementation.votes.map{ |v| v.value }.sum %></td>
     <td><%= link_to 'Show', implementation %></td>
     <td><%= link_to 'Edit', edit_implementation_path(implementation) %></td>
     <td><%= link_to 'Destroy', implementation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to "Vote Up", polymorphic_path([implementation, :up]) %></td>
+    <td><%= link_to 'Vote Down', polymorphic_path([implementation, :down]) %></td>
   </tr>
 <% end %>
 </table>

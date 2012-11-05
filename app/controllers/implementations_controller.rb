@@ -32,7 +32,7 @@ class ImplementationsController < ApplicationController
 
     respond_to do |format|
       if @implementation.save
-        format.html { redirect_to @implementation, notice: 'Implementation was successfully added.' }
+        format.html { redirect_to implementations_url, notice: 'Implementation was successfully added.' }
       else
         format.html { render action: "new" }
       end

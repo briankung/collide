@@ -5,6 +5,9 @@
     <th>Name</th>
     <th>URL</th>
     <th>Description</th>
+    <th>Votes</th>
+    <th></th>
+    <th></th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,9 +18,12 @@
     <td><%= concept.name %></td>
     <td><%= concept.url %></td>
     <td><%= concept.description %></td>
+    <td><%= concept.votes.map{ |v| v.value }.sum %></td>
     <td><%= link_to 'Show', concept %></td>
     <td><%= link_to 'Edit', edit_concept_path(concept) %></td>
     <td><%= link_to 'Destroy', concept, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to "Vote Up", polymorphic_path([concept, :up]) %></td>
+    <td><%= link_to 'Vote Down', polymorphic_path([concept, :down]) %></td>
   </tr>
 <% end %>
 </table>

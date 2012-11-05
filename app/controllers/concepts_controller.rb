@@ -35,7 +35,7 @@ class ConceptsController < ApplicationController
 
     respond_to do |format|
       if @concept.save
-        format.html { redirect_to @concept, notice: 'Concept was successfully added.' }
+        format.html { redirect_to concepts_url, notice: 'Concept was successfully added.' }
       else
         format.html { render action: "new" }
       end

@@ -1,11 +1,17 @@
 Collide::Application.routes.draw do
-  resources :implementations
+  resources :implementations do
+    get 'up' => 'votes#up'
+    get 'down' => 'votes#down'
+  end
 
-  resources :concepts
+  resources :concepts do
+    get 'up' => 'votes#up'
+    get 'down' => 'votes#down'
+  end
 
   devise_for :heroes
 
-  root to: 'home#index'
+  root to: 'concepts#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
