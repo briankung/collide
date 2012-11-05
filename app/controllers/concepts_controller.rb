@@ -4,7 +4,9 @@ class ConceptsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.rb { @controller_src = File.open(__FILE__) } # BK: This is kinda ghetto
+      # BK: This is kinda ghetto. I don't even know why I put this in here.
+      # BK: Proof of concept?
+      # format.rb { @controller_src = File.open(__FILE__) } 
     end
   end
 
@@ -33,7 +35,7 @@ class ConceptsController < ApplicationController
 
     respond_to do |format|
       if @concept.save
-        format.html { redirect_to @concept, notice: 'Concept was successfully created.' }
+        format.html { redirect_to @concept, notice: 'Concept was successfully added.' }
       else
         format.html { render action: "new" }
       end

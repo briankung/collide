@@ -1,5 +1,5 @@
 Collide::Application.routes.draw do
-  resources :codes
+  resources :implementations
 
   resources :concepts
 
