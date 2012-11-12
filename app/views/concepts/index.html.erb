@@ -30,7 +30,7 @@
         <td><%= link_to concept.name, concept_path(concept) %></td>
         <td><%= concept.url %></td>
         <td><%= concept.description %></td>
-        <td><%= concept.hero.try(:alias) %></td>
+        <td><%= concept.hero.try(:identity) %></td>
         <td><%=l concept.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

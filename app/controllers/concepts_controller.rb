@@ -1,7 +1,7 @@
 class ConceptsController < ApplicationController
+  load_and_authorize_resource
+  
   def index
-    @concepts = Concept.all
-
     respond_to do |format|
       format.html # index.html.erb
       # BK: This is kinda ghetto. I don't even know why I put this in here.
@@ -11,28 +11,21 @@ class ConceptsController < ApplicationController
   end
 
   def show
-    @concept = Concept.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
     end
   end
 
   def new
-    @concept = Concept.new
-
     respond_to do |format|
       format.html # new.html.erb
     end
   end
 
   def edit
-    @concept = Concept.find(params[:id])
   end
 
   def create
-    @concept = Concept.new(params[:concept])
-
     respond_to do |format|
       if @concept.save
         format.html { redirect_to concepts_url, notice: 'Concept was successfully added.' }
@@ -43,8 +36,6 @@ class ConceptsController < ApplicationController
   end
 
   def update
-    @concept = Concept.find(params[:id])
-
     respond_to do |format|
       if @concept.update_attributes(params[:concept])
         format.html { redirect_to @concept, notice: 'Concept was successfully updated.' }

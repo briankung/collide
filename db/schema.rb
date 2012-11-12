@@ -35,8 +35,7 @@ ActiveRecord::Schema.define(:version => 20121112041557) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
-    t.string   "name"
-    t.string   "alias"
+    t.string   "identity"
   end
 
   add_index "heroes", ["email"], :name => "index_heroes_on_email", :unique => true
