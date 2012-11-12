@@ -5,11 +5,12 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th></th>
+      <th><%= model_class.human_attribute_name(:votes) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:url) %></th>
       <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:hero_id) %></th>
+      <th><%= model_class.human_attribute_name(:hero) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -17,11 +18,19 @@
   <tbody>
     <% @concepts.each do |concept| %>
       <tr>
-        <td><%= link_to concept.id, concept_path(concept) %></td>
-        <td><%= concept.name %></td>
+        <td>
+          <% if current_hero %>
+            <%= link_to t('.up', :default => t("helpers.links.up")),
+                        polymorphic_path([concept, :up]), :class => 'btn btn-mini' %><br />
+            <%= link_to t('.down', :default => t("helpers.links.down")),
+                        polymorphic_path([concept, :down]), :class => 'btn btn-mini' %>
+          <% end %>
+        </td>
+        <td><%= concept.total_votes %></td>
+        <td><%= link_to concept.name, concept_path(concept) %></td>
         <td><%= concept.url %></td>
         <td><%= concept.description %></td>
-        <td><%= concept.hero_id %></td>
+        <td><%= concept.hero.alias %></td>
         <td><%=l concept.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

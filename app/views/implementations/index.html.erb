@@ -5,7 +5,8 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th></th>
+      <th><%= model_class.human_attribute_name(:votes) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:source_url) %></th>
       <th><%= model_class.human_attribute_name(:live_url) %></th>
@@ -19,8 +20,16 @@
   <tbody>
     <% @implementations.each do |implementation| %>
       <tr>
-        <td><%= link_to implementation.id, implementation_path(implementation) %></td>
-        <td><%= implementation.name %></td>
+        <td>
+          <% if current_hero %>
+            <%= link_to t('.up', :default => t("helpers.links.up")),
+                        polymorphic_path([implementation, :up]), :class => 'btn btn-mini' %><br />
+            <%= link_to t('.down', :default => t("helpers.links.down")),
+                        polymorphic_path([implementation, :down]), :class => 'btn btn-mini' %>
+          <% end %>
+        </td>
+        <td><%= implementation.total_votes %></td>
+        <td><%= link_to implementation.name, implementation_path(implementation) %></td>
         <td><%= implementation.source_url %></td>
         <td><%= implementation.live_url %></td>
         <td><%= implementation.description %></td>
