@@ -17,8 +17,9 @@ class ApplicationController < ActionController::Base
 private
 	
 	# BK: Identifies and initializes voteable resource via routes
-	def load_voteable
-		resource, id = request.path.split('/')[1, 2]
-		@voteable = resource.singularize.classify.constantize.find(id) if id =~ /\d/
-	end
+  def load_voteable
+    resource, id = request.path.split('/')[1, 2]
+    @voteable = resource.singularize.classify.constantize.find(id) if id =~ /\d/
+  end
+
 end

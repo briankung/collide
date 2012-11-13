@@ -10,6 +10,7 @@ class Hero < ActiveRecord::Base
   # attr_accessible :title, :body
 
   has_many :concepts
+  has_many :comments
   has_many :votes
   has_many :implementations
 end
