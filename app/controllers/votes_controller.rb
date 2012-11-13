@@ -1,4 +1,6 @@
 class VotesController < ApplicationController
+	authorize_resource
+
 	def up
 		vote = @voteable.votes.find_by_hero_id(current_hero.id)
 

@@ -11,5 +11,5 @@ class Hero < ActiveRecord::Base
 
   has_many :concepts
   has_many :votes
-  has_many :implementations, :through => :concepts
+  has_many :implementations
 end
