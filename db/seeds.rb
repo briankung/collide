@@ -5,3 +5,19 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+[Hero, Concept, Implementation, Comment].each do |klass|
+	klass.destroy_all
+end
+
+Hero.create(identity: 'faitswulff', email: 'brian@callmekung.com', 
+	password: '123456', password_confirmation: '123456')
+
+[Implementation, Concept].each do |klass|
+	instance = klass.new
+	instance.name = 'Test Implementation'
+	instance.hero_id = Hero.first.id
+	instance.save
+end
+
+[Hero, Concept, Implementation].each { |k| puts k.all }

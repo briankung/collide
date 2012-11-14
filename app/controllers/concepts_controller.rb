@@ -1,5 +1,6 @@
 class ConceptsController < ApplicationController
   load_and_authorize_resource
+  acts_as_votable
   
   def index
     respond_to do |format|
