@@ -6,8 +6,4 @@ class Implementation < ActiveRecord::Base
   belongs_to :concept
   belongs_to :hero
   has_many :comments, as: :commentable, :dependent => :destroy
-
-  def total_votes
-    self.votes.map{ |v| v.value }.inject(:+)
-  end
 end

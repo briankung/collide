@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121113222413) do
+ActiveRecord::Schema.define(:version => 20121114220246) do
 
   create_table "comments", :force => true do |t|
     t.integer  "commentable_id",   :default => 0
@@ -34,10 +34,17 @@ ActiveRecord::Schema.define(:version => 20121113222413) do
     t.string   "name"
     t.string   "url"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.integer  "hero_id"
+    t.integer  "cached_votes_total", :default => 0
+    t.integer  "cached_votes_up",    :default => 0
+    t.integer  "cached_votes_down",  :default => 0
   end
+
+  add_index "concepts", ["cached_votes_down"], :name => "index_concepts_on_cached_votes_down"
+  add_index "concepts", ["cached_votes_total"], :name => "index_concepts_on_cached_votes_total"
+  add_index "concepts", ["cached_votes_up"], :name => "index_concepts_on_cached_votes_up"
 
   create_table "heroes", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -65,10 +72,17 @@ ActiveRecord::Schema.define(:version => 20121113222413) do
     t.text     "description"
     t.text     "source_code"
     t.integer  "concept_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
     t.string   "hero_id"
+    t.integer  "cached_votes_total", :default => 0
+    t.integer  "cached_votes_up",    :default => 0
+    t.integer  "cached_votes_down",  :default => 0
   end
+
+  add_index "implementations", ["cached_votes_down"], :name => "index_implementations_on_cached_votes_down"
+  add_index "implementations", ["cached_votes_total"], :name => "index_implementations_on_cached_votes_total"
+  add_index "implementations", ["cached_votes_up"], :name => "index_implementations_on_cached_votes_up"
 
   create_table "votes", :force => true do |t|
     t.integer  "votable_id"
@@ -78,7 +92,6 @@ ActiveRecord::Schema.define(:version => 20121113222413) do
     t.boolean  "vote_flag"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-    t.integer  "hero_id"
   end
 
   add_index "votes", ["votable_id", "votable_type"], :name => "index_votes_on_votable_id_and_votable_type"

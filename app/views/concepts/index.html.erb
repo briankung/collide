@@ -26,7 +26,7 @@
                         polymorphic_path([concept, :down]), :class => 'btn btn-mini' %>
           <% end %>
         </td>
-        <td><%= concept.total_votes %></td>
+        <td><%= concept.cached_votes_up - concept.cached_votes_down %></td>
         <td><%= link_to concept.name, concept_path(concept) %></td>
         <td><%= concept.url %></td>
         <td><%= concept.description %></td>

@@ -11,7 +11,6 @@ class Ability
       can :write, [Concept, Implementation], :hero_id => hero.id
     else
       can :read, [Concept, Implementation]
-      cannot :vote, Vote
     end
 
     # The first argument to `can` is the action you are giving the user permission to do.

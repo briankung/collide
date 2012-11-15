@@ -20,4 +20,4 @@ Hero.create(identity: 'faitswulff', email: 'brian@callmekung.com',
 	instance.save
 end
 
-[Hero, Concept, Implementation].each { |k| puts k.all }
+puts 'No errors.'

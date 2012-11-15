@@ -28,7 +28,7 @@
                         polymorphic_path([implementation, :down]), :class => 'btn btn-mini' %>
           <% end %>
         </td>
-        <td><%= implementation.total_votes %></td>
+        <td><%= implementation.cached_votes_up - implementation.cached_votes_down %></td>
         <td><%= link_to implementation.name, implementation_path(implementation) %></td>
         <td><%= implementation.source_url %></td>
         <td><%= implementation.live_url %></td>
