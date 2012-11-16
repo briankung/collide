@@ -17,7 +17,6 @@ gem 'thin'
 gem 'devise'
 gem 'cancan'
 
-gem 'acts_as_commentable_with_threading'
 gem 'acts_as_votable', '~> 0.4.0'
 
 # Gems used only for assets and not required

@@ -1,5 +1,4 @@
 class Implementation < ActiveRecord::Base
-	acts_as_commentable
 	acts_as_votable
   attr_accessible :description, :live_url, :name, :source_code, :source_url, :concept_id
 

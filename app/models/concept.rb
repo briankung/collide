@@ -1,6 +1,5 @@
 class Concept < ActiveRecord::Base
 	acts_as_votable
-	acts_as_commentable
   attr_accessible :description, :name, :url
 
   has_many :implementations
