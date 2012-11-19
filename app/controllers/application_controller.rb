@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  before_filter :load_commentable
   protect_from_forgery
 
   # CanCan Stuff
@@ -14,8 +15,8 @@ class ApplicationController < ActionController::Base
   end
 
 private
-  def load_votable
+  def load_commentable
     resource, id = request.path.split('/')[1, 2]
-    @votable = resource.singularize.classify.constantize.find(id) if id =~ /\d/
+    @commentable = resource.singularize.classify.constantize.find(id) if id =~ /\d/
   end
 end

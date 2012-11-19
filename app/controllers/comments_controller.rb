@@ -1,6 +1,13 @@
 class CommentsController < ApplicationController
-	# Needs to be able to:
-	# -Add a comment to a [Comment, Implementation, Concept]
-	# -Remove a comment from a [Comment, Implementation, Concept]
-	# -
+	load_and_authorize_resource
+
+  def create
+    @comment = @commentable.comments.new(params[:comment].merge({hero_id: current_hero.id}))
+    if @comment.save
+      redirect_to @commentable, notice: "Comment created."
+    else
+      render :new
+    end
+  end
+
 end

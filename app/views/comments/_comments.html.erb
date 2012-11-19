@@ -1,0 +1,15 @@
+<p>Comments</p>
+
+<ul>
+<% @comments.each do |c| %>
+  <li>
+    <p><%= c.content %></p>
+    <p>by <%= Hero.find(c.hero_id).identity %></p>
+  </li>
+<% end %>
+</ul>
+
+<%= form_for [@commentable, @comment] do |c| %>
+  <p><%= c.text_field :content %></p>
+  <p><%= c.submit "Add New Comment" %></p>
+<% end %>

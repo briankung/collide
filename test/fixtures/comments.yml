@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  content: MyText
+  hero_id: 1
+  ancestry: MyString
+
+two:
+  content: MyText
+  hero_id: 1
+  ancestry: MyString

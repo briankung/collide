@@ -2,11 +2,13 @@ Collide::Application.routes.draw do
   resources :implementations do
     get 'up' => 'votes#up'
     get 'down' => 'votes#down'
+    resources :comments, except: [:index, :new]
   end
 
   resources :concepts do
     get 'up' => 'votes#up'
     get 'down' => 'votes#down'
+    resources :comments, except: [:index, :new]
   end
 
   devise_for :heroes

@@ -11,6 +11,9 @@ class ConceptsController < ApplicationController
   end
 
   def show
+    @comments = @commentable.comments
+    @comment = Comment.new
+
     respond_to do |format|
       format.html # show.html.erb
     end

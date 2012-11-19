@@ -11,24 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121114220246) do
+ActiveRecord::Schema.define(:version => 20121116200800) do
 
   create_table "comments", :force => true do |t|
-    t.integer  "commentable_id",   :default => 0
-    t.string   "commentable_type", :default => ""
-    t.string   "title",            :default => ""
-    t.text     "body",             :default => ""
-    t.string   "subject",          :default => ""
-    t.integer  "hero_id",          :default => 0,  :null => false
-    t.integer  "parent_id"
-    t.integer  "lft"
-    t.integer  "rgt"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.text     "content"
+    t.integer  "hero_id"
+    t.string   "ancestry"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.integer  "cached_votes_total", :default => 0
+    t.integer  "cached_votes_up",    :default => 0
+    t.integer  "cached_votes_down",  :default => 0
   end
 
-  add_index "comments", ["commentable_id"], :name => "index_comments_on_commentable_id"
-  add_index "comments", ["hero_id"], :name => "index_comments_on_hero_id"
+  add_index "comments", ["ancestry"], :name => "index_comments_on_ancestry"
+  add_index "comments", ["cached_votes_down"], :name => "index_comments_on_cached_votes_down"
+  add_index "comments", ["cached_votes_total"], :name => "index_comments_on_cached_votes_total"
+  add_index "comments", ["cached_votes_up"], :name => "index_comments_on_cached_votes_up"
 
   create_table "concepts", :force => true do |t|
     t.string   "name"
@@ -74,7 +75,7 @@ ActiveRecord::Schema.define(:version => 20121114220246) do
     t.integer  "concept_id"
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
-    t.string   "hero_id"
+    t.integer  "hero_id"
     t.integer  "cached_votes_total", :default => 0
     t.integer  "cached_votes_up",    :default => 0
     t.integer  "cached_votes_down",  :default => 0

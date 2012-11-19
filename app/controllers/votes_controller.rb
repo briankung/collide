@@ -1,5 +1,5 @@
 class VotesController < ApplicationController
-	before_filter :load_votable
+	before_filter :load_commentable, :authenticate_hero!
 	def up
 		vote_status = current_hero.voted_as_when_voted_for(@votable)
 

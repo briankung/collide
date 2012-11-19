@@ -2,13 +2,13 @@ class Ability
   include CanCan::Ability
 
   def initialize(hero)
-    alias_action :create, :update, :destroy, :to => :write
+    alias_action :create, :update, :destroy, :edit, :to => :write
     alias_action :up, :down, :to => :vote
 
     hero ||= Hero.new # guest user (not logged in)
     if hero.id
       can :read, :all
-      can :write, [Concept, Implementation], :hero_id => hero.id
+      can :write, [Concept, Implementation, Comment], :hero_id => hero.id
     else
       can :read, [Concept, Implementation]
     end
